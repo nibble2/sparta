@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Nibble Flower Shop</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script type="text/javascript">
+			const target = document.getElementById("flower") ;
+			function myOrder() {
+				alert('주문하시겠습니까 ?') ;
+			}
+			
+		</script>
+	</head>
+
+	<body class="landing is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">Nibble</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="generic.html">Generic</a></li>
+											<li><a href="elements.html">Elements</a></li>
+											<li><a href="#">Sign Up</a></li>
+											<li><a href="#">Log In</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Banner -->
+					<section id="banner">
+						<div class="inner">
+							<h2>Nibble Flower Shop</h2>
+							<p>예쁜 꽃을 선물하세요<br />
+							예약을 통해 더 빠르게 마음을 전하세요 !<br />
+							Order right now !</p>
+							<ul class="actions special">
+								<li><a href="#" class="button primary">가게 상세정보</a></li>
+							</ul>
+						</div>
+						<a href="#one" class="more scrolly">More</a>
+					</section>
+
+
+
+				<!-- Two -->
+					<section id="two" class="wrapper alt style2">
+						<section class="spotlight">
+							<div class="image"><img src="images/pic01.jpg" alt="" /></div><div class="content">
+								<h2>프로포즈를 위한 꽃 :)<br /> </h2>
+								<p>이 상품은 프로포즈를 위한 꽃! 입니다. <br />
+								게절마다 어울리는 꽃을 조합하여 가장 예쁘게 배치하였습니다.<br />
+							    <input name="checkbox" type="checkbox" value="200000" onClick="itemSum(this.form);">200000원</p>
+							</div>
+						</section>
+						<section class="spotlight">
+							<div class="image"><img src="images/pic02.jpg" alt="" /></div><div class="content">
+								<h2>졸업식을 위한 꽃 :)<br /></h2>
+								<p>이 상품은 졸업식을 위한 꽃! 입니다.<br />
+								졸업을 축하하며 꽃 한송이 어떨까요 ?<br />
+								<h4>가격: 30,000</h4></p>
+							</div>
+						</section>
+						<section class="spotlight">
+							<div class="image"><img src="images/pic03.jpg" alt="" /></div><div class="content">
+								<h2>한송이로 마음 전하기 :)<br /></h2>
+								<p>가끔은 꽃 한송이로 가볍게 마음을 전하는건 어떨까요 ?
+								<h4>가격: 10,000 </h4></p>
+							</div>
+						</section>
+					</section>
+
+				<!-- Three -->
+					<section id="three" class="wrapper style3 special">
+						<div class="inner">
+							<header class="wrapper style1 special">
+								<h2>안녕하세요 Nibble Flower Shop 입니다.</h2>
+								<p>저희 가게는 매일 신선한 꽃을 준비하여 예쁘게 포장하여 준비중입니다.<br />
+								가장 소중한 사람에게 주고싶은 꽃, NFS에서 준비하세요.</p>
+							</header>
+							<ul class="features">
+								<li class="icon fa-paper-plane">
+									<h3>위치</h3>
+									<p>서울 마포구 상암산로 76 지하 1층<br />
+									디지털 미디어시티 9번출구
+									</p>
+								</li>
+								<li class="icon fa-heart">
+									<h3>인스타그램</h3>
+									<p> <a href="https://www.instagram.com/_nibblezz/?hl=ko" target=_blank>@_nibblezz</a><br />
+									인스타그램 다이렉트를 통해 <br /> 문의 받고 있습니다.
+									</p>
+								</li>
+							</ul>
+						</div>
+					</section>
+
+					<!-- One -->
+					<section id="one" class="wrapper style1 special">
+						<div class="inner">
+							<header class="major">
+								<h2 class="order">ORDER<br /></h2>
+								<p class="my-order">
+									<form class="order-form">
+									  <label for="fname">성함</label>
+									  <input type="text" id="fname" name="fname" placeholder="입금자명과 동일하게">
+
+									  <label for="user-phone">전화번호</label>
+									  <input type="text" id="phone" name="phone" placeholder="010-1234-3456">
+
+									  <label for="user-add">주소</label>
+									  <textarea type="text" id="add"></textarea>
+
+									  <label for="flower-box">주문할 꽃</label>
+									  <select id="flower" name="flower">
+										  <option value="200000">프로포즈를 위한 꽃</option>
+										  <option value="50000">졸업식</option>
+										  <option value="10000">꽃 한송이</option>
+									  </select>
+									</form>
+								</p>
+							</header>
+							<ul class="actions special">
+								<button onclick="myOrder()" type="button" class="button primary">주문하기</button>
+							</ul>
+						</div>
+					</section>
+
+				<!-- CTA -->
+					<section id="cta" class="wrapper style4">
+						<div class="inner">
+							<header>
+								<h2>Arcue ut vel commodo</h2>
+								<p>Aliquam ut ex ut augue consectetur interdum endrerit imperdiet amet eleifend fringilla.</p>
+							</header>
+							<ul class="actions stacked">
+								<li><a href="#" class="button fit primary">Activate</a></li>
+								<li><a href="#" class="button fit">Learn More</a></li>
+							</ul>
+						</div>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						<ul class="copyright">
+							<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
