@@ -2361,6 +2361,10 @@ input, select, textarea {
 		margin: 0 0 2em 0;
 		width: 100%;
 	}
+	
+	div header h2 {
+		padding-bottom: 0.5em ;
+	}
 
 		table tbody tr {
 			border: solid 1px #fff;
@@ -2378,10 +2382,10 @@ input, select, textarea {
 
 		table th {
 			color: #fff;
-			font-size: 0.9em;
+			font-size: 100%;
 			font-weight: 600;
 			padding: 0 0.75em 0.75em 0.75em;
-			text-align: left;
+			text-align: center;
 		}
 
 		table thead {
