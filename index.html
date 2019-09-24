@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-	Spectral by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 
 <head>
@@ -11,114 +6,76 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <!-- Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    // 주문하기 API
+    function myOrder() {
+        let name = $('#order_name').val();
+        let phone = $('#order_phone').val();
+        let address = $('#order_address').val();
+        let count = $('#order_count').val();
+        let item = '졸업식';
 
-    <!-- Javascript -->
-    < <script type="text/javascript">
+        $.ajax({
+            type: "POST",
+            url: "http://spartacodingclub.shop/order",
+            data: { name_give: name, phone_give: phone, address_give: address, count_give: count, item_give: item },
+            success: function(response) {
+                if (response['result'] == 'success') {
+                    alert('주문 완료');
+                    window.location.reload();
+                } else {
+                    alert('서버 에러');
+                }
+            }
+        })
+    }
 
-		// 주문하기 API
-        function myOrder() {
-	        let name = $('#order_name').val() ;
-	        let phone = $('#order_phone').val() ;
-	        let address = $('#order_address').val() ;
-	        let count = $('#order_count').val() ;
-	        let item = '졸업식' ;
+    $(document).ready(function() {
+        $('#order-box').html('');
+        listing();
+    });
 
-	        $.ajax({
-	        	type: "POST",
-	        	url: "http://spartacodingclub.shop/order",
-	        	data: {name_give:name, phone_give:phone, address_give:address, count_give:count, item_give:item},
-	        	success: function(response) {
-	        		if( response['result'] == 'success') {
-	        			alert('주문 완료') ;
-	        			window.location.reload() ;
-	        		} else {
-	        			alert('서버 에러') ;
-	        		}
-	        	}
-	        })
-        }
+    // 주문 가져오기 API
+    function listing() {
+        $.ajax({
+            type: "GET",
+            url: "http://spartacodingclub.shop/order?item_give=졸업식",
+            data: {},
+            success: function(response) {
+                if (response['result'] == 'success') {
+                    let orders = response['orders'];
+                    for (let i = 0; i < orders.length; i++) {
+                        make_order(orders[i]['item'], orders[i]['name'], orders[i]['phone'], orders[i]['count'], orders[i]['address'])
+                    }
 
-        $(document).ready(function(){
-        	$('#order-box').html('') ;
-  			listing();
-		});
+                } else {
+                    console.log('실패');
+                }
+            }
+        })
+    }
 
-        // 주문 가져오기 API
-		function listing() {
-			$.ajax ({
-				type: "GET",
-				url: "http://spartacodingclub.shop/order?item_give=졸업식",
-				data: {},
-				success: function(response) {
-					if( response['result'] == 'success') {
-						let orders = response['orders'] ;
-						for(let i=0; i<orders.length; i++) {
-							make_order(orders[i]['item'],orders[i]['name'],orders[i]['phone'],orders[i]['count'],orders[i]['address'])
-						}
-
-					} else {
-						console.log('실패') ;
-					}
-				}
-			})
-		}
-
-		function make_order(item, name, phone, count, address) {
-			let temp_html =
-				'<tr>\
-					<td>'+item+'</td>\
-					<td>'+name+'</td>\
-					<td>'+phone+'</td>\
-					<td>'+count+'</td>\
-					<td>'+address+'</td>\
-				</tr>' ;
-				$('#order-box').append(temp_html) ;
-		}
-
+    function make_order(item, name, phone, count, address) {
+        let temp_html =
+            '<tr>\
+                <td>' + item + '</td>\
+                <td>' + name + '</td>\
+                <td>' + phone + '</td>\
+                <td>' + count + '</td>\
+                <td>' + address + '</td>\
+            </tr>';
+        $('#order-box').append(temp_html);
+    }
     </script>
-
 </head>
 
 <body class="landing is-preload">
     <!-- Page Wrapper -->
     <div id="page-wrapper">
-        <!-- Header -->
-        <header id="header" class="alt">
-            <h1><a href="index.html">Nibble</a></h1>
-            <nav id="nav">
-                <ul>
-                    <li class="special">
-                        <a href="#menu" class="menuToggle"><span>Menu</span></a>
-                        <div id="menu">
-                            <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="generic.html">Generic</a></li>
-                                <li><a href="elements.html">Elements</a></li>
-                                <li><a href="#">Sign Up</a></li>
-                                <li><a href="#">Log In</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-        <!-- Banner -->
-        <section id="banner">
-            <div class="inner">
-                <h2>Nibble Flower Shop</h2>
-                <p>예쁜 꽃을 선물하세요<br />
-                    예약을 통해 더 빠르게 마음을 전하세요 !<br />
-                    Order right now !</p>
-                <ul class="actions special">
-                    <li><a href="#" class="button primary">가게 상세정보</a></li>
-                </ul>
-            </div>
-            <a href="#one" class="more scrolly">More</a>
-        </section>
-        <!-- Two -->
         <section id="two" class="wrapper alt style2">
             <section class="spotlight">
                 <div class="image"><img src="images/pic01.jpg" alt="" /></div>
@@ -149,31 +106,6 @@
                 </div>
             </section>
         </section>
-        <!-- Three -->
-        <section id="three" class="wrapper style3 special">
-            <div class="inner">
-                <header class="wrapper style1 special">
-                    <h2>안녕하세요 Nibble Flower Shop 입니다.</h2>
-                    <p>저희 가게는 매일 신선한 꽃을 준비하여 예쁘게 포장하여 준비중입니다.<br />
-                        가장 소중한 사람에게 주고싶은 꽃, NFS에서 준비하세요.</p>
-                </header>
-                <ul class="features">
-                    <li class="icon fa-paper-plane">
-                        <h3>위치</h3>
-                        <p>서울 마포구 상암산로 76 지하 1층<br />
-                            디지털 미디어시티 9번출구
-                        </p>
-                    </li>
-                    <li class="icon fa-heart">
-                        <h3>인스타그램</h3>
-                        <p> <a href="https://www.instagram.com/_nibblezz/?hl=ko" target=_blank>@_nibblezz</a><br />
-                            인스타그램 다이렉트를 통해 <br /> 문의 받고 있습니다.
-                        </p>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
         <!-- One -->
         <section id="one" class="wrapper style1 special">
             <div class="inner">
@@ -183,21 +115,17 @@
                         <form class="order-form">
                             <label for="order_name">성함</label>
                             <input type="text" id="order_name" placeholder="입금자명과 동일하게">
-
                             <label for="order_phone">전화번호</label>
                             <input type="text" id="order_phone" placeholder="ex)01012343456">
-
                             <label for="order_address">주소</label>
                             <textarea type="text" id="order_address"></textarea>
-
                             <label for="order_count">수량</label>
                             <input type="text" id="order_count"></input>
-
                             <label for="order_item">주문할 꽃</label>
                             <select id="order_item" name="flower">
                                 <option value="프로포즈를 위한 꽃">프로포즈를 위한 꽃</option>
                                 <option value="졸업식">졸업식</option>
-                                <option value="꽃 한송">꽃 한송이</option>
+                                <option value="꽃 한송이">꽃 한송이</option>
                             </select>
                         </form>
                     </p>
@@ -207,50 +135,34 @@
                 </ul>
             </div>
         </section>
-
         <!-- CTA -->
-        <section id="cta" class="wrapper style4">
+        <section id="one" class="wrapper style4">
             <div class="inner">
-                <header class="order-list">
-                    <h2>ღORDER LISTღ</h2>
+                <header class="major" id="order-list">
+                    <h2 class="order">Order List</h2>
                 </header>
                 <div class="order">
-                	<table id="table-header">
-                		<thead>
-                			<th>상품명</th>
-                			<th>주문자명</th>
-                			<th>핸드폰 번호</th>
-                			<th>갯수</th>
-                			<th>주소</th>
-                		</thead>
-                		<tbody id="order-box">
-            				<tr>
-            					<td>졸업식</td>
-            					<td>이다나</td>
-            					<td>01056820731</td>
-            					<td>1</td>
-            					<td>영등포</td>
-            				</tr>
-                		</tbody>
-                	</table>
+                    <table id="table-header">
+                        <thead>
+                            <th>상품명</th>
+                            <th>주문자명</th>
+                            <th>핸드폰 번호</th>
+                            <th>갯수</th>
+                            <th>주소</th>
+                        </thead>
+                        <tbody id="order-box">
+                            <tr>
+                                <td>졸업식</td>
+                                <td>이다나</td>
+                                <td>01056820731</td>
+                                <td>1</td>
+                                <td>영등포</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
-
-        <!-- Footer -->
-        <footer id="footer">
-            <ul class="icons">
-                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-                <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-            </ul>
-            <ul class="copyright">
-                <li>&copy; Untitled</li>
-                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-            </ul>
-        </footer>
     </div>
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
