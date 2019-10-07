@@ -39,3 +39,5 @@ API를 만들때 설정해주는건가,,, 궁굼하다..
 ~~~
 색 표: <https://www.color-hex.com/color/8f6c7d>
 ~~~
+
+완성된 레파지토리 : https://github.com/nibble2/shopping-flask
